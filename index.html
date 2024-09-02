@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-step Form - Patient Report</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- jsPDF and html2canvas libraries for generating PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+<!-- multistep form -->
+<form id="msform">
+  <!-- progressbar -->
+  <ul id="progressbar">
+    <li class="active"><i class="fas fa-user"></i> Step 1</li>
+    <li><i class="fas fa-vial"></i> Step 2</li>
+    <li><i class="fas fa-file-alt"></i> Step 3</li>
+  </ul>
+
+  <!-- Step 1: Basic Information -->
+  <fieldset class="active">
+    <h2 class="fs-title">Basic Information</h2>
+    <h3 class="fs-subtitle">Please enter the patient's basic information.</h3>
+    <input type="text" name="full_name" id="full_name" placeholder="Full Name" required />
+    <input type="number" name="age" id="age" placeholder="Age" required />
+    <div class="dropdown-selection">
+      <label for="gender">Gender:</label>
+      <select name="gender" id="gender" required>
+        <option value="" disabled selected>Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="not specified">Not Specified</option>
+      </select>
+    </div>
+    <input type="button" name="next" class="next action-button" value="Next" />
+  </fieldset>
+
+  <!-- Step 2: Blood Count Information -->
+  <fieldset>
+    <h2 class="fs-title">Blood Count Information</h2>
+    <h3 class="fs-subtitle">Please enter the patient's blood count details.</h3>
+    <input type="text" name="wbc" id="wbc" placeholder="White Blood Cells Count (x10³/µL)" required />
+    <input type="text" name="rbc" id="rbc" placeholder="Red Blood Cells Count (x10⁶/µL)" required />
+    <input type="text" name="haemoglobin" id="haemoglobin" placeholder="Hemoglobin (g/dl)" required />
+    <input type="text" name="platelets" id="platelets" placeholder="Platelets Count (x10³/µL)" required />
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+    <input type="button" name="next" class="next action-button" value="Next" />
+  </fieldset>
+
+  <!-- Step 3: Review & Submit -->
+  <fieldset>
+    <h2 class="fs-title">Review & Submit</h2>
+    <h3 class="fs-subtitle">Review the details and submit the report.</h3>
+    <!-- Summary section to show the entered data for review -->
+    <div id="summary" class="summary-card"></div>
+    <!-- Hematology Report Table -->
+    <h2>Hematology Report</h2>
+    <div class="table-container">
+        <table id="hematologyReport">
+            <thead>
+                <tr>
+                    <th>Tests</th>
+                    <th>Normal Range</th>
+                    <th>Unit</th>
+                    <th>Results</th>
+                    <th>Scale</th>
+                </tr>
+            </thead>
+            <tbody id="reportTable">
+                <!-- Rows will be dynamically generated -->
+            </tbody>
+        </table>
+    </div>
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+    <input type="submit" class="submit action-button" value="Submit" />
+    
+    <!-- Generate PDF Button -->
+    <button type="button" id="generate-pdf" class="generate-pdf-button" style="display: none;"><i class="fas fa-file-pdf"></i> Generate Report</button>
+  </fieldset>
+</form>
+
+<script src="script.js"></script>
+</body>
+</html>

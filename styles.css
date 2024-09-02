@@ -1,0 +1,276 @@
+/*custom font*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+/*basic reset*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  background-color: #e5e5e5; /* Light Grey Background */
+}
+
+body {
+  font-family: montserrat, arial, verdana;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #ffffff; /* White Background */
+}
+
+/*form styles*/
+#msform {
+  width: 100%;
+  max-width: 700px; /* Increased max-width for better layout */
+  margin: auto;
+  text-align: center;
+  position: relative;
+  background-color: #ffffff; /* White form background */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+#msform fieldset {
+  background: #ffffff; /* White fieldset background */
+  border: 1px solid #e5e5e5; /* Light Grey border */
+  border-radius: 5px;
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 100%;
+  position: absolute;
+  visibility: hidden; /* Start hidden */
+  opacity: 0; /* Start fully transparent */
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; /* Smooth transition */
+}
+
+/* Show only the active fieldset */
+#msform fieldset.active {
+  visibility: visible;
+  opacity: 1;
+  position: relative; /* Make the active fieldset visible */
+}
+
+#msform input, #msform textarea, #msform select {
+  padding: 15px;
+  border: 1px solid #14213d; /* Dark Blue border */
+  border-radius: 3px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #000000; /* Black text */
+  font-size: 14px;
+}
+
+#msform .dropdown-selection {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+#msform .dropdown-selection label {
+  display: block;
+  margin-bottom: 5px;
+  color: #14213d; /* Dark Blue Label */
+}
+
+#msform .action-button {
+  width: 120px;
+  background: #fca311; /* Orange button background */
+  font-weight: bold;
+  color: #ffffff; /* White button text */
+  border: 0 none;
+  border-radius: 5px; /* Increased border radius */
+  cursor: pointer;
+  padding: 12px;
+  margin: 10px 5px;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+#msform .action-button:hover, #msform .action-button:focus {
+  background: #14213d; /* Dark Blue on hover */
+  color: #ffffff;
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #fca311;
+}
+
+.fs-title {
+  font-size: 20px; /* Increased font size */
+  text-transform: uppercase;
+  color: #14213d; /* Dark Blue title */
+  margin-bottom: 10px;
+}
+
+.fs-subtitle {
+  font-weight: normal;
+  font-size: 15px;
+  color: #666; /* Grey subtitle */
+  margin-bottom: 20px;
+}
+
+#progressbar {
+  margin-bottom: 30px;
+  overflow: hidden;
+  counter-reset: step;
+  display: flex;
+  justify-content: space-between;
+  color: #14213d; /* Dark Blue progress text */
+}
+
+#progressbar li {
+  list-style-type: none;
+  text-transform: uppercase;
+  font-size: 12px;
+  width: 33.33%;
+  position: relative;
+  font-weight: bold;
+}
+
+#progressbar li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 30px;
+  line-height: 30px;
+  display: block;
+  font-size: 12px;
+  color: #ffffff; /* White text */
+  background: #14213d; /* Dark Blue background */
+  border-radius: 50%;
+  margin: 0 auto 5px auto;
+}
+
+#progressbar li:after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: #e5e5e5; /* Light Grey progress bar */
+  position: absolute;
+  left: -50%;
+  top: 14px;
+  z-index: -1;
+}
+
+#progressbar li:first-child:after {
+  content: none; 
+}
+
+#progressbar li.active:before, #progressbar li.active:after {
+  background: #fca311; /* Orange for active step */
+  color: #ffffff;
+}
+
+/* Styles for Summary Card */
+.summary-card {
+  background-color: #e5e5e5; /* Light Grey background */
+  border: 1px solid #14213d; /* Dark Blue border */
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 16px; /* Increased font size */
+  max-width: 95%; /* Increased max-width for better layout */
+  margin: 20px auto; /* Centered the card */
+  color: #000000; /* Black text */
+}
+
+/* Styles for Report Table */
+.table-container {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px; /* Increased padding for better readability */
+  text-align: center;
+  font-size: 14px;
+}
+
+th {
+  background-color: #14213d; /* Dark Blue background */
+  color: #ffffff; /* White text */
+}
+
+.normal {
+  background-color: #d4edda; /* Green for Normal Range */
+  color: #155724;
+}
+
+.abnormal {
+  background-color: #f8d7da; /* Red for Abnormal Range */
+  color: #721c24;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  background: #ddd;
+  outline: none;
+  opacity: 0.9;
+  transition: opacity .2s;
+  margin: 10px 0;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #fca311; /* Orange thumb */
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #fca311; /* Orange thumb */
+  cursor: pointer;
+}
+
+/* Slider Labels */
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-top: -5px;
+  margin-bottom: 15px;
+  color: #14213d; /* Dark Blue labels */
+}
+
+/* Generate PDF Button */
+.generate-pdf-button {
+  width: 200px;
+  background: #14213d; /* Dark Blue button background */
+  font-weight: bold;
+  color: #ffffff; /* White button text */
+  border: 0 none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 12px;
+  margin: 20px 5px;
+  text-decoration: none;
+  font-size: 15px;
+  display: inline-block;
+}
+
+.generate-pdf-button:hover {
+  background: #fca311; /* Orange on hover */
+}
